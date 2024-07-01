@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-function Invoice({invoiceTotal}) {
+function Invoice({invoiceTotal, invoiceStatus, clientName, invoiceId, dueDate}) {
     
     
     
@@ -10,15 +10,15 @@ function Invoice({invoiceTotal}) {
             <div className="p-10">
                 
                 <div>
-                    <p>Invoice Number</p>
+                    <p>{invoiceId}</p>
                     <p>{invoiceTotal}</p>
                 </div>
                 
-                <p>Due Date</p>
+                <p>{dueDate}</p>
                 
                 <div>
-                    <p>Name</p>
-                    <p>Status</p>
+                    <p>{clientName}</p>
+                    <p>{invoiceStatus}</p>
                 </div>
                 
 
