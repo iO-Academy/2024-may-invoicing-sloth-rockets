@@ -1,9 +1,10 @@
 import { useEffect } from "react"
+import moment from "moment"
 
 function Invoice({invoiceTotal, invoiceStatus, clientName, invoiceId, dueDate}) {
-    
-    
-    
+
+    const date = moment(dueDate);
+    const formattedDate = date.format("DD MMMM YYYY");
 
     return (
         <>
@@ -14,14 +15,12 @@ function Invoice({invoiceTotal, invoiceStatus, clientName, invoiceId, dueDate}) 
                     <p>{invoiceTotal}</p>
                 </div>
                 
-                <p>{dueDate}</p>
+                <p>Due {formattedDate}</p>
                 
                 <div>
                     <p>{clientName}</p>
                     <p>{invoiceStatus}</p>
                 </div>
-                
-
 
             </div>
         </>
