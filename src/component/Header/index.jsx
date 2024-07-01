@@ -12,13 +12,12 @@ function Header() {
         .then((unpaidInvoices) => {
             setUnpaid(unpaidInvoices.data.length)
         })
-
-    }, [] )
+    }, [])
 
     return(
-        <header>
-            <h1 className="font-bold text-4xl">Invoices</h1>
-            <p className="text-gray-500">There are {unpaid} unpaid invoices</p>
+        <header className="ml-[10%] pt-8 ">
+            <h1 className="font-bold text-4xl pb-1">Invoices</h1>
+            <p className="text-gray-500 pb-8 text-lg font-medium">There are {unpaid} unpaid invoices</p>
         </header>
         
     )
