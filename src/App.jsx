@@ -12,7 +12,7 @@ function App() {
         {/* Homepage*/}
         <Route path="/" element={<InvoiceContainer />} />
         {/* ViewInvoice*/}
-        <Route path="/ViewInvoice/:idName" element={<ViewInvoice />} />
+        <Route path="/ViewInvoice/:idName/:id" element={<ViewInvoice />} />
         {/* CreateInvoice*/}
         <Route path="/CreateInvoice" element={<CreateInvoice />} />
       </Routes>
