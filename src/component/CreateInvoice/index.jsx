@@ -1,5 +1,5 @@
-function CreateInvoice(){
-    return(
+function CreateInvoice() {
+    return (
         <>
 
         </>

@@ -1,5 +1,5 @@
-function ViewInvoice(){
-    return(
+function ViewInvoice() {
+    return (
         <>
         </>
     )

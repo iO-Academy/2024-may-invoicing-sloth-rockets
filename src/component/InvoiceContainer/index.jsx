@@ -4,24 +4,24 @@ import Footer from "../Footer"
 import Header from "../Header"
 
 
-function InvoiceContainer(){
+function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
     useEffect(() => {
-		// Instructions here on what you need to happen on component mount
-		fetch('https://invoicing-api.dev.io-academy.uk/invoices')
+        // Instructions here on what you need to happen on component mount
+        fetch('https://invoicing-api.dev.io-academy.uk/invoices')
             .then(res => res.json())
             .then((invoiceData) => {
                 setInvoices(invoiceData.data)
 
             })
     }, [])
-    
-    return(
+
+    return (
         <>
-            <Header/>
-            
-      
-            {invoices.map(invoice => <Invoice invoiceTotal={invoice.invoice_total} invoiceStatus={invoice.status_name} clientName={invoice.name} invoiceId={invoice.invoice_id} dueDate={invoice.due}/>)}
+            <Header />
+
+
+            {invoices.map(invoice => <Invoice invoiceTotal={invoice.invoice_total} invoiceStatus={invoice.status_name} clientName={invoice.name} invoiceId={invoice.invoice_id} dueDate={invoice.due} />)}
 
 
             <Footer />
