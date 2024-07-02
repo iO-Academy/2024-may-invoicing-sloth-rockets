@@ -37,22 +37,22 @@ function ViewInvoice({}){
         <ViewHeader idName={idName} />
         <div className="grid grid-cols-2 place-content-around p-3">
             <div className="pl-3">
-                <p>From</p>
+                <p className="font-medium pb-2 pt-2">From</p>
                 <p>Kermit the Frog</p>
                 <p>Beverly Hills</p>
                 <p>California</p>
-                <p>To</p>
+                <p className="font-medium pb-2 pt-4">To</p>
                 <p>{name}</p>
                 <p></p>
                 <p>{streetAddress}</p>
                 <p>{city}</p>
             </div>
             <div className="text-left justify-self-center">
-                <p>Status</p>
+                <p className="font-medium pb-2 pt-2">Status</p>
 
-                <p>Created</p>
+                <p className="font-medium pb-2">Created</p>
                 <p>{formattedDateCreated}</p>
-                <p>Due</p>
+                <p className="font-medium pb-2 pt-4">Due</p>
                 <p>{formattedDateDue}</p>
             </div>
         </div>
