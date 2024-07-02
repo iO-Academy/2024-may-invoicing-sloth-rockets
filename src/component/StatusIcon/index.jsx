@@ -1,10 +1,12 @@
-function StatusIcon() {
-    useEffect(setColor, [])
+import { useEffect, useState } from "react"
+
+function StatusIcon({ invoiceStatus }) {
+    useEffect(iconColor, [])
 
     const [statusColor, setStatusColor] = useState('')
     const [statusBorderColor, setStatusBorderColor] = useState('')
 
-    function setColor() {
+    function iconColor() {
         if (invoiceStatus === "Paid") {
             setStatusColor("text-green-500")
             setStatusBorderColor("border-green-500")
@@ -18,7 +20,6 @@ function StatusIcon() {
             setStatusColor("text-zinc-500")
             setStatusBorderColor("border-zinc-500")
         }
-
     }
 
     return (
