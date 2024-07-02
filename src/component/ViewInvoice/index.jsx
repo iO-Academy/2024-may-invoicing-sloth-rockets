@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom"
 import ViewHeader from "../ViewHeader"
 
 function ViewInvoice({}){
-    const {id} = useParams()
+    const {idName} = useParams()
     return(
         <>
-        <ViewHeader id={id}/>
+        <ViewHeader idName={idName}/>
         </>
     )
 }
