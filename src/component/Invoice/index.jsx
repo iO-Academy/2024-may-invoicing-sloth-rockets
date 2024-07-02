@@ -8,23 +8,27 @@ function Invoice({invoiceTotal, invoiceStatus, clientName, invoiceId, dueDate}) 
 
     return (
         <>
-            <div className="p-2 mb-4 border-2 border-black flex flex-row justify-between">
-                
-                <div className="p-2 self-center">
+            <div className="p-2 mb-4 border-2 border-black">
+
+                <div className="flex flex-row justify-between p-2">
+
                     <p className="font-semibold text-base"><span className="text-gray-500">#</span>{invoiceId}</p>
-                    <p className="font-semibold text-2xl ">£ {invoiceTotal}</p>
+                    <p className=" text-gray-500 text-base font-medium" >Due {formattedDate}</p>
+                    <p className="text-gray-500 text-base font-medium ">{clientName}</p>
+
                 </div>
-                
-                <p className="p-2 text-gray-500 text-base font-medium self-center" >Due {formattedDate}</p>
-                
-                <div className="p-2 flex flex-col" >
-                    <p className="text-gray-500 text-base font-medium self-end">{clientName}</p>
+
+                <div className="p-2 self-center flex flex-row justify-between">
+                    <p className="font-semibold text-2xl self-end ">£ {invoiceTotal}</p>
                     <p className="self-end" >{invoiceStatus}</p>
                 </div>
 
             </div>
         </>
     )
+
+
+
 
 }
 
