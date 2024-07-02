@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import moment from "moment"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 
 function Invoice({invoiceTotal, invoiceStatus, invoiceStatusName, clientName, invoiceId, dueDate}) {
 
     const date = moment(dueDate);
-    const formattedDate = date.format("DD MMMM YYYY");
+    const formattedDate = date.format("DD MMM YYYY");
+    const element = <FontAwesomeIcon icon={faChevronRight} />
 
 
     useEffect(setColor, [])
@@ -35,7 +38,7 @@ function Invoice({invoiceTotal, invoiceStatus, invoiceStatusName, clientName, in
 
     return (
         <>
-            <div className="p-2 mb-4 border-2 border-black md:flex md:items-center">
+            <div className="p-2 mb-4 border border-gray-500 bg-white md:flex md:items-center">
 
                 <div className="flex flex-row justify-between p-2">
 
@@ -47,8 +50,9 @@ function Invoice({invoiceTotal, invoiceStatus, invoiceStatusName, clientName, in
 
                 <span className="p-2 self-center flex flex-row justify-between md:grow">
                     <p className="font-semibold text-2xl self-center">£ {invoiceTotal}</p>
-                    <li className={`${statusColor} ${statusBorderColor} border-2 p-2 rounded-sm list-disc`} >{invoiceStatus}</li>
+                    <li className={`${statusColor} ${statusBorderColor} border-2 p-2 rounded-md list-disc`} >{invoiceStatus}</li> 
                 </span>
+                <p className="hidden md:block self-center text-gray-500 p-2">{element}</p>
 
             </div>
         </>
