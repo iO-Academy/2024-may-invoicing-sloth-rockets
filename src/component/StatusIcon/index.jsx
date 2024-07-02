@@ -1,6 +1,4 @@
-
-function CreateInvoice() {
-
+function StatusIcon() {
     useEffect(setColor, [])
 
     const [statusColor, setStatusColor] = useState('')
@@ -22,12 +20,10 @@ function CreateInvoice() {
         }
 
     }
-    
-    return (
-        <>
 
-        </>
+    return (
+        <p className={`${statusColor} ${statusBorderColor} border-2 p-2 rounded-md`} ><span className="text-xl">•</span>{invoiceStatus}</p>
     )
 }
 
-export default CreateInvoice
+export default StatusIcon

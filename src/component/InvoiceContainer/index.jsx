@@ -3,7 +3,6 @@ import Invoice from "../Invoice"
 import Footer from "../Footer"
 import Header from "../Header"
 
-
 function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
     useEffect(() => {
@@ -15,17 +14,17 @@ function InvoiceContainer() {
 
             })
     }, [])
-
+    
     return (
         <>
             <Header />
-
-
-            {invoices.map(invoice => <Invoice invoiceTotal={invoice.invoice_total} invoiceStatus={invoice.status_name} clientName={invoice.name} invoiceId={invoice.invoice_id} dueDate={invoice.due} />)}
-
-
+            {invoices.map(invoice => <Invoice
+                invoiceTotal={invoice.invoice_total}
+                invoiceStatus={invoice.status_name}
+                clientName={invoice.name}
+                invoiceId={invoice.invoice_id}
+                dueDate={invoice.due} />)}
             <Footer />
-
         </>
     )
 }
