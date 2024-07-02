@@ -35,19 +35,19 @@ function Invoice({invoiceTotal, invoiceStatus, invoiceStatusName, clientName, in
 
     return (
         <>
-            <div className="p-2 mb-4 border-2 border-black ">
+            <div className="p-2 mb-4 border-2 border-black md:flex md:items-center">
 
                 <div className="flex flex-row justify-between p-2">
 
-                    <p className="font-semibold text-base"><span className="text-gray-500">#</span>{invoiceId}</p>
-                    <p className=" text-gray-500 text-base font-medium" >Due {formattedDate}</p>
-                    <p className="text-gray-500 text-base font-medium text-right ">{clientName}</p>
+                    <p className="font-semibold text-base md:pr-5 md:pl-2"><span className="text-gray-500">#</span>{invoiceId}</p>
+                    <p className=" text-gray-500 text-base font-medium md:pr-5" >Due {formattedDate}</p>
+                    <p className="text-gray-500 text-base font-medium text-right md:pr-5">{clientName}</p>
 
                 </div>
 
-                <span className="p-2 self-center flex flex-row justify-between">
-                    <p className="font-semibold text-2xl self-end ">£ {invoiceTotal}</p>
-                    <p className={`${statusColor} ${statusBorderColor} border-2 p-2 rounded-sm`} >{invoiceStatus}</p>
+                <span className="p-2 self-center flex flex-row justify-between md:grow">
+                    <p className="font-semibold text-2xl self-center">£ {invoiceTotal}</p>
+                    <li className={`${statusColor} ${statusBorderColor} border-2 p-2 rounded-sm list-disc`} >{invoiceStatus}</li>
                 </span>
 
             </div>
