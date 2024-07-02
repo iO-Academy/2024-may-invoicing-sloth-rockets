@@ -35,7 +35,7 @@ function Invoice({invoiceTotal, invoiceStatus, invoiceStatusName, clientName, in
 
     return (
         <>
-            <div className="p-2 mb-4 border-2 border-black md:flex md:flex-row md:justify-between ">
+            <div className="p-2 mb-4 border-2 border-black ">
 
                 <div className="flex flex-row justify-between p-2">
 
@@ -45,10 +45,10 @@ function Invoice({invoiceTotal, invoiceStatus, invoiceStatusName, clientName, in
 
                 </div>
 
-                <div className="p-2 self-center flex flex-row justify-between">
+                <span className="p-2 self-center flex flex-row justify-between">
                     <p className="font-semibold text-2xl self-end ">£ {invoiceTotal}</p>
-                    <p className={`${statusColor} ${statusBorderColor} border-2 p-2 rounded-sm md:flex md:justify-self-end`} >{invoiceStatus}</p>
-                </div>
+                    <p className={`${statusColor} ${statusBorderColor} border-2 p-2 rounded-sm`} >{invoiceStatus}</p>
+                </span>
 
             </div>
         </>
