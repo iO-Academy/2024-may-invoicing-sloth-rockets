@@ -1,7 +1,11 @@
+import Footer from "../Footer"
+import Header from "../Header"
+
 function InvoiceContainer(){
     return(
         <>
-            <h1>Goodbye World</h1>
+            <Header/>
+            <Footer />
         </>
     )
 }
