@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react"
 import moment from "moment"
 
-function StatusIcon({ invoiceStatus, date }) {
+function StatusIcon({ invoiceStatus, date=moment()}) {
     useEffect(iconColor, [])
 
     const [statusColor, setStatusColor] = useState('')
+    const [overDue,setOverDue] = useState(false)
 
     function iconColor() {
-        if (moment().isAfter(date)) {
-            setStatusColor("red-600")
-            invoiceStatus = "overdue"
-        } else if (invoiceStatus === "Pending") {
-            setStatusColor("yellow-400")
-        } else if (invoiceStatus === "Paid") {
+        if (invoiceStatus === "Paid") {
             setStatusColor("green-500")
-        } else {
+        }
+        else if (invoiceStatus === "Cancelled"){
             setStatusColor("zinc-500")
         }
+        else if (moment().isAfter(date)) {
+            setOverDue(true)
+            setStatusColor("red-600")
+        } else if (invoiceStatus === "Pending") {
+            setStatusColor("yellow-400")
+        } 
     }
-    console.log(moment())
 
     return (
-        <p className={`text-${statusColor} border-${statusColor} border-2 p-2 rounded-md`} ><span className="text-xl">•</span>{invoiceStatus}</p>
+        <p className={`text-${statusColor} border-${statusColor} border-2 p-2 rounded-md`} ><span className="text-xl">•</span>{overDue ? "Overdue" :invoiceStatus}</p>
     )
 }
 
