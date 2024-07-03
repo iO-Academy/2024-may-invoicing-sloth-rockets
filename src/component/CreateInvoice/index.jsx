@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Dropdown from "../Dropdown"
 
 function CreateInvoice(){
 
@@ -24,9 +25,7 @@ function CreateInvoice(){
 
     return(
         <>  
-            <select>
-                {clients.map(client => <option value="hi">hello</option>)}
-            </select>
+            <Dropdown clients={clients}/>
     
         </>
     )
