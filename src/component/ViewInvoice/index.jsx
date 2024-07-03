@@ -91,19 +91,19 @@ function ViewInvoice({ }) {
                 <p className="col-span-2 md:col-span-3"></p>
                 <p className="text-right">Total</p>
                 <p></p>
-                <p className="font-bold">£{invoiceTotal}</p>
+                <p className="font-bold">£{parseFloat(invoiceTotal).toLocaleString()}</p>
             </div>
             <div className="border-t border-b p-4 pr-0 grid  grid-cols-5 md:grid-cols-6">
                 <p className="col-span-2 md:col-span-3" ></p>
                 <p className="text-right">Paid to date</p>
                 <p></p>
-                <p className="font-bold">£{paidToDate}</p>
+                <p className="font-bold">£{parseFloat(paidToDate).toLocaleString()}</p>
             </div>
             <div className="bg-[#FEC007]  border-t border-b font-bold p-4 pr-0 grid grid-cols-5 md:grid-cols-6">
                 <p className="col-span-2 md:col-span-3"></p>
                 <p className="text-right">Total due</p>
                 <p> </p>
-                <p>£{(parseFloat(invoiceTotal) + parseFloat(paidToDate)).toFixed(2)}</p>
+                <p>£{parseFloat((parseFloat(invoiceTotal) - parseFloat(paidToDate)).toFixed(2)).toLocaleString()}</p>
             </div>
             <p className="border-b pt-4 pb-8">Payments due within 30 days.</p>
         </>
