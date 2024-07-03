@@ -3,9 +3,9 @@ import Invoice from "../Invoice"
 
 function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
-
+    const sort = null
     useEffect(() => {
-        fetch('https://invoicing-api.dev.io-academy.uk/invoices')
+        fetch(`https://invoicing-api.dev.io-academy.uk/invoices?status=${sort}`)
             .then(res => res.json())
             .then((invoiceData) => {
                 setInvoices(invoiceData.data)
@@ -14,6 +14,15 @@ function InvoiceContainer() {
 
     return (
         <>
+            <label for="sort">Sort By </label>
+
+            <select name="sort" id="sort">
+                <option value="1">Paid</option>
+                <option value="2">Pending</option>
+                <option value="3">Cancelled</option>
+                <option value="null">None</option>
+            </select>
+
             {invoices.map(invoice => <Invoice
                 key={invoice.invoice_id}
                 invoiceTotal={invoice.invoice_total}
