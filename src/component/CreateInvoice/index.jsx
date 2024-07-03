@@ -14,13 +14,6 @@ function CreateInvoice() {
         setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
     }, [])
 
-
-    /*
-    const date = moment()
-    const formattedDate = date.format("DD MMMM YY")
-    const dueDate = moment().add(30, 'days')
-    */
-
     const [clients, setClients] = useState([])
     const [clientName, setClientName] = useState('')
     const [clientStreet, setClientStreet] = useState('')
@@ -37,6 +30,24 @@ function CreateInvoice() {
                 
              })
     }, [])
+
+    const [quantity, setQuantity] = useState(0)
+    const [rate, setRate] = useState(0)
+    const [total, setTotal] = useState(0)
+
+    function handleQuantity(e) {
+        setQuantity(Number(e.target.value))
+        calcTotalTotal()
+    }
+
+    function handleRate(e) {
+        setRate(Number(e.target.value))
+        calcTotal
+    }
+
+    function calcTotal() {
+        setTotal(quantity * rate)
+    }
 
     return(
         <>  
@@ -58,7 +69,20 @@ function CreateInvoice() {
                     <p>{formattedDateDue}</p>
                 </div>
         </div>
-            
+
+        <div className="grid grid-cols-4">
+            <p>Description</p>
+            <p>Quantity</p>
+            <p>Rate</p>
+            <p>Total</p>
+        </div>
+        <div className="grid grid-cols-4">
+            <textarea>Description</textarea>
+            <input onChange={handleQuantity} type='number' min ='1' max='100' value ='1' step='1'></input>
+            <input onChange={handleRate} type='number' min ='1' max='100' value ='£' step='1'></input>
+            <p>£{total}</p>
+
+        </div>    
     
         </>
     )
