@@ -14,7 +14,7 @@ function App() {
           {/* Homepage*/}
           <Route path="/" element={<InvoiceContainer />} />
           {/* ViewInvoice*/}
-          <Route path="/ViewInvoice" element={<ViewInvoice />} />
+          <Route path="/ViewInvoice/:id" element={<ViewInvoice />} />
           {/* CreateInvoice*/}
           <Route path="/CreateInvoice" element={<CreateInvoice />} />
         </Routes>
