@@ -1,32 +1,29 @@
-
 import { useEffect, useState } from "react"
 import Invoice from "../Invoice"
 import Footer from "../Footer"
 import Header from "../Header"
 
-
-function InvoiceContainer(){
+function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
+    
     useEffect(() => {
-		// Instructions here on what you need to happen on component mount
-		fetch('https://invoicing-api.dev.io-academy.uk/invoices')
+        fetch('https://invoicing-api.dev.io-academy.uk/invoices')
             .then(res => res.json())
             .then((invoiceData) => {
                 setInvoices(invoiceData.data)
-
             })
     }, [])
     
-    return(
+    return (
         <>
-            <Header/>
-            
-      
-            {invoices.map(invoice => <Invoice invoiceTotal={invoice.invoice_total} invoiceStatus={invoice.status_name} clientName={invoice.name} invoiceId={invoice.invoice_id} dueDate={invoice.due} id={invoice.id}/>)}
-
-
-            <Footer />
-
+            {invoices.map(invoice => <Invoice
+                key={invoice.invoice_id}
+                invoiceTotal={invoice.invoice_total}
+                invoiceStatus={invoice.status_name}
+                clientName={invoice.name}
+                invoiceId={invoice.invoice_id}
+                id={invoice.id}
+                dueDate={invoice.due} />)}
         </>
     )
 }
