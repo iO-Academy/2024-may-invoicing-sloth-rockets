@@ -7,6 +7,5 @@ function Bill({detail}){
             <p>£{detail.total}</p>
         </div>
     )
-
 }
 export default Bill

@@ -3,11 +3,23 @@ import ViewHeader from "../ViewHeader"
 import { useEffect, useState } from "react"
 import moment from "moment"
 import Bill from "../Bill"
+import StatusIcon from "../StatusIcon"
 
 function ViewInvoice({ }) {
     const { idName, id } = useParams()
-    const [clientInvoice, setClientInvoice] = useState({ name: "", streetAddress: "", city: "", created: "", due: "", details: [], paidToDate: "", invoiceTotal: "", status: "", statusName: "" })
-    const { name, streetAddress, city, created, due, details, paidToDate, invoiceTotal, status, statusName } = clientInvoice
+    const [clientInvoice, setClientInvoice] = useState({
+        name: "",
+        streetAddress: "",
+        city: "",
+        created: "",
+        due: "",
+        details: [],
+        paidToDate: "",
+        invoiceTotal: "",
+        statusName: ""
+    })
+    const { name, streetAddress, city, created, due, details, paidToDate, invoiceTotal, statusName } = clientInvoice
+    const date = moment(due)
     useEffect(() => {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`)
             .then(res => res.json())
@@ -32,7 +44,7 @@ function ViewInvoice({ }) {
     const formattedDateDue = dateDue.format("DD MMMM YYYY");
     const dateCreated = moment(created);
     const formattedDateCreated = dateCreated.format("DD MMMM YYYY");
-
+    console.log(date,statusName)
     return (
         <>
             <ViewHeader idName={idName} />
@@ -50,6 +62,7 @@ function ViewInvoice({ }) {
                 </div>
                 <div className="text-left justify-self-center">
                     <p className="font-medium pb-2 pt-2">Status</p>
+                    <StatusIcon invoiceStatus={clientInvoice.statusName} date={date} />
                     <p className="font-medium pb-2">Created</p>
                     <p>{formattedDateCreated}</p>
                     <p className="font-medium pb-2 pt-4">Due</p>
