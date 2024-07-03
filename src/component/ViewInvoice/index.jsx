@@ -44,7 +44,7 @@ function ViewInvoice({ }) {
     const formattedDateDue = dateDue.format("DD MMMM YYYY");
     const dateCreated = moment(created);
     const formattedDateCreated = dateCreated.format("DD MMMM YYYY");
-    console.log(date,statusName)
+    console.log(date, statusName)
     return (
         <>
             <ViewHeader idName={idName} />
