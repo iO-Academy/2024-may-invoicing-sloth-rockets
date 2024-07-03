@@ -18,7 +18,7 @@ function Invoice({ invoiceTotal, invoiceStatus, clientName, invoiceId, dueDate }
             </div>
             <div className="p-2 self-center flex flex-row justify-between md:grow">
                 <p className="font-semibold text-2xl self-center">£ {invoiceTotal}</p>
-                <StatusIcon invoiceStatus={invoiceStatus} />
+                <StatusIcon invoiceStatus={invoiceStatus} date={date} />
             </div>
             <p className="text-gray-500 p-2 hidden md:block self-center ">{element}</p>
         </div>
