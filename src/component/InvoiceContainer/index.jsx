@@ -3,7 +3,7 @@ import Invoice from "../Invoice"
 
 function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
-    const [sort ,setSort] = useState(1)
+    const [sort ,setSort] = useState(NaN)
     useEffect(() => {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices?status=${sort}`)
             .then(res => res.json())
@@ -16,14 +16,19 @@ function InvoiceContainer() {
         setSort(parseInt(e.target.value))
     }
     return (
-        <>
-            <label htmlFor="sort">Sort By </label>
-            <select name="sort" id="sort" onChange={statusChange} >
-                <option value="1">Paid</option>
+        <><div className="grid-cols-2 pb-10 pl-2 md:flex">
+            <span className="">*filling dead space*</span>
+            <label htmlFor="sort"></label>
+            <select className="bg-[#F8F9FA] font-semibold text-left" name="sort" id="sort" onChange={statusChange} >
+                <option disabled selected value>Sort by</option>
+                <option className="" value="1">Paid</option>
                 <option value="2">Pending</option>
                 <option value="3">Cancelled</option>
-                <option value="NaN">None</option>
+                <option value="NaN">Show all</option>
             </select>
+            <span>*placeholder*</span>
+            <span>*placeholder*</span>
+            </div>
 
             {invoices.map(invoice => <Invoice
                 key={invoice.invoice_id}
