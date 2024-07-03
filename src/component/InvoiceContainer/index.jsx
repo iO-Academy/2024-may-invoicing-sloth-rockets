@@ -3,7 +3,7 @@ import Invoice from "../Invoice"
 
 function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
-    const sort = null
+    const [sort ,setSort] = useState(null)
     useEffect(() => {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices?status=${sort}`)
             .then(res => res.json())
@@ -11,12 +11,14 @@ function InvoiceContainer() {
                 setInvoices(invoiceData.data)
             })
     }, [])
-
+    function statusChange(e){
+        console.log(e.target.value)
+        setSort(e.target.value)
+    }
     return (
         <>
-            <label for="sort">Sort By </label>
-
-            <select name="sort" id="sort">
+            <label htmlFor="sort">Sort By </label>
+            <select name="sort" id="sort" onChange={statusChange} >
                 <option value="1">Paid</option>
                 <option value="2">Pending</option>
                 <option value="3">Cancelled</option>
