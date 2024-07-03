@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Dropdown from "../ClientDropdown"
 import moment from "moment";
+import StatusIcon from "../StatusIcon";
 
 function CreateInvoice() {
     const [formattedDateCreated, setFormattedDateCreated] = useState("")
@@ -50,7 +51,7 @@ function CreateInvoice() {
                 </div>
                 <div className="text-left justify-self-center">
                     <p className="font-medium pb-2 pt-2">Status</p>
-
+                    <StatusIcon invoiceStatus="Pending" date={formattedDateDue} />
                     <p className="font-medium pb-2">Created</p>
                     <p>{formattedDateCreated}</p>
                     <p className="font-medium pb-2 pt-4">Due</p>
