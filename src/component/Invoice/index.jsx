@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import moment from "moment"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
@@ -11,7 +10,7 @@ function Invoice({ invoiceTotal, invoiceStatus, clientName, invoiceId, dueDate, 
     const element = <FontAwesomeIcon icon={faChevronRight} />
 
     return (
-        <Link to={`/ViewInvoice/${invoiceId}/${id}`}>
+        <Link to={`/ViewInvoice/${id}`}>
             <div className=" border-gray-500 bg-white p-2 mb-4 border md:flex md:items-center">
                 <div className="p-2 flex flex-row justify-between">
                     <p className="font-semibold text-base md:pr-5 md:pl-2"><span className="text-gray-500">#</span>{invoiceId}</p>
