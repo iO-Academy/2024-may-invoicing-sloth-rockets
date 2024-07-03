@@ -9,5 +9,12 @@ export default {
   },
   plugins: [],
 
-  safelist:[`text-zinc-500`,`border-zinc-500`,`text-green-500`,`border-green-500`,`text-red-600`,`border-red-600`,`text-yellow-400`,`border-yellow-400`]
+  safelist:[`text-zinc-500`,
+    `border-zinc-500`,
+    `text-green-500`,
+    `border-green-500`,
+    `text-red-600`,
+    `border-red-600`,
+    `text-yellow-400`,
+    `border-yellow-400`]
 }
