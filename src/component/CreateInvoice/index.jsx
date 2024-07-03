@@ -1,7 +1,24 @@
 import { useEffect, useState } from "react"
-import Dropdown from "../Dropdown"
+import Dropdown from "../ClientDropdown"
+import moment from "moment";
 
-function CreateInvoice(){
+function CreateInvoice() {
+    const [formattedDateCreated, setFormattedDateCreated] = useState("")
+    const [formattedDateDue, setFormattedDateDue] = useState("")
+    
+    useEffect(() => {
+        const dateDue = moment().add(30, 'days')
+        const dateCreated = moment()
+        setFormattedDateDue(dateDue.format("DD MMMM YYYY"))
+        setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
+    }, [])
+
+
+    /*
+    const date = moment()
+    const formattedDate = date.format("DD MMMM YY")
+    const dueDate = moment().add(30, 'days')
+    */
 
     const [clients, setClients] = useState([])
     const [clientName, setClientName] = useState('')
@@ -12,7 +29,6 @@ function CreateInvoice(){
         fetch('https://invoicing-api.dev.io-academy.uk/clients')
             .then(res => res.json())
             .then((clientsData) => {
-                console.log(clientsData.data)
                 setClients(clientsData.data)
                 setClientName(clients.name) 
                 setClientStreet(clients.street_address)
@@ -36,9 +52,9 @@ function CreateInvoice(){
                     <p className="font-medium pb-2 pt-2">Status</p>
 
                     <p className="font-medium pb-2">Created</p>
-                    <p>date created</p>
+                    <p>{formattedDateCreated}</p>
                     <p className="font-medium pb-2 pt-4">Due</p>
-                    <p>formattedDateDue</p>
+                    <p>{formattedDateDue}</p>
                 </div>
         </div>
             
