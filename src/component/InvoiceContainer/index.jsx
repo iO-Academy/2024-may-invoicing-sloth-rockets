@@ -16,18 +16,17 @@ function InvoiceContainer() {
         setSort(parseInt(e.target.value))
     }
     return (
-        <><div className="grid-cols-2 pb-10 pl-2 md:flex">
-            <span className="">*filling dead space*</span>
-            <label htmlFor="sort"></label>
-            <select className="bg-[#F8F9FA] font-semibold text-left" name="sort" id="sort" onChange={statusChange} >
-                <option disabled selected value>Sort by</option>
-                <option className="" value="1">Paid</option>
-                <option value="2">Pending</option>
-                <option value="3">Cancelled</option>
-                <option value="NaN">Show all</option>
-            </select>
-            <span>*placeholder*</span>
-            <span>*placeholder*</span>
+        <><div className="grid grid-cols-2 pb-10 pl-2 lg:inline-block lg:relative lg:-right-[35%]">
+                <div>
+                    <label htmlFor="sort"></label>
+                    <select className="bg-[#F8F9FA] font-semibold text-left" defaultValue="0" name="sort" id="sort" onChange={statusChange} >
+                        <option disabled value="0">Sort by</option>
+                        <option className="" value="1">Paid</option>
+                        <option value="2">Pending</option>
+                        <option value="3">Cancelled</option>
+                        <option value="NaN">Show all</option>
+                    </select>
+                </div>
             </div>
 
             {invoices.map(invoice => <Invoice
