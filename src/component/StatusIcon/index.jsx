@@ -22,7 +22,7 @@ function StatusIcon({ invoiceStatus, date = moment() }) {
         }
     }
     return (
-        <p className={`text-${statusColor} border-${statusColor} border-2 p-2 rounded-md`} ><span className="text-xl">•</span>{overDue ? "Overdue" : invoiceStatus}</p>
+        <p className={`text-${statusColor} border-${statusColor} border-2 p-2 rounded-md inline-block`} ><span className="text-xl">•</span>{overDue ? "Overdue" : invoiceStatus}</p>
     )
 }
 export default StatusIcon
