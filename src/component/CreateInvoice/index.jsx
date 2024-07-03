@@ -21,11 +21,27 @@ function CreateInvoice(){
              })
     }, [])
 
-    // <p>{client.name}, {client.street_address}, {client.city}</p>)}
-
     return(
         <>  
-            <Dropdown clients={clients}/>
+            <div className="grid grid-cols-2 place-content-around p-3">
+                <div className="pl-3">
+                    <p className="font-medium pb-2 pt-2">From</p>
+                    <p>Kermit the Frog</p>
+                    <p>Beverly Hills</p>
+                    <p>California</p>
+                    <p className="font-medium pb-2 pt-4">To</p>
+                    <Dropdown clients={clients}/>
+                </div>
+                <div className="text-left justify-self-center">
+                    <p className="font-medium pb-2 pt-2">Status</p>
+
+                    <p className="font-medium pb-2">Created</p>
+                    <p>date created</p>
+                    <p className="font-medium pb-2 pt-4">Due</p>
+                    <p>formattedDateDue</p>
+                </div>
+        </div>
+            
     
         </>
     )
