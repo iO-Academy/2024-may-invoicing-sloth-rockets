@@ -3,15 +3,16 @@ import Dropdown from "../ClientDropdown"
 import moment from "moment";
 import StatusIcon from "../StatusIcon";
 import InvoiceRow from "../InvoiceRow";
-import { Link } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 
 function CreateInvoice() {
+    const navigate = useNavigate()
     const [formattedDateCreated, setFormattedDateCreated] = useState("")
     const [formattedDateDue, setFormattedDateDue] = useState("")
 
     const [selectedClient, setSelectedClient] = useState("1")
-    const [clients, setClients] = useState([{id:""}])
-
+    const [clients, setClients] = useState([{ id: "" }])
+    const [errorMessage, setErrorMessage] = useState("")
     const [details, setDetails] = useState([{
         "quantity": 0,
         "rate": 0,
@@ -41,7 +42,7 @@ function CreateInvoice() {
             "total": 0,
             "description": "Optional text field"
         }))
-        
+
     }
     function minusDetails() {
         if (details.length > 1) {
@@ -49,44 +50,55 @@ function CreateInvoice() {
         }
 
     }
-    
-    function setRowDetails(newDetails, id){
+
+    function setRowDetails(newDetails, id) {
         var newList = details.slice()
         newList[id] = newDetails
         setDetails(newList)
-    }   
+    }
 
     function storeClient(id) {
         setSelectedClient(id)
     }
-    
+
     function sendInvoice() {
         const dataToSend = {
             "client": selectedClient,
             "total": details.reduce((carry, detail) => carry + detail.total, 0),
             "details": details
         }
+        let detailsValid = true
+        dataToSend.details.forEach((detail) => {
+            if (detail.description === "") {
+                detailsValid = false
+            }
+        })
+        console.log(detailsValid, dataToSend.client, dataToSend.total)
 
-        if (dataToSend.client && dataToSend.total && dataToSend.details.description) {
+        if (dataToSend.client && dataToSend.total && detailsValid) {
+            setErrorMessage("")
             fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
                 method: "POST",
                 body: JSON.stringify(dataToSend),
                 headers: {
-                  "Content-Type": "application/json",
-                  "Accept": "application/json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 }
-              })
-            console.log("sent")
+            })
+                .then(res => res.json())
+                .then(data => {
+                    navigate("/")
+                })
         } else {
-            console.log('error')
+            setErrorMessage("Error: please fill all fields!")
         }
 
     }
-    
+
 
     return (
         <>
-            
+
             <div className="bg-white px-3 pt-2">
 
                 <div className="grid grid-cols-2 place-content-around">
@@ -119,9 +131,9 @@ function CreateInvoice() {
                     <p className="col-span-3 text-right font-semibold">Total</p>
                     <p className="text-right font-semibold">£{details.reduce((carry, detail) => carry + detail.total, 0)}</p>
                 </div>
-                <div></div>
             </div>
-                <div className="bg-white pt-10 border-b">
+            <div className="bg-white pt-5 border-b flex justify-end pb-5 pr-5">
+                {<p className="text-red-600 self-center italic font-mono animate-bounce">{errorMessage}</p>}
             </div>
             <div className="bg-white flex justify-end gap-2 pt-4 pb-10 px-3">
                 <button onClick={sendInvoice} className="bg-green-600 text-white p-2 rounded">Create invoice</button>
