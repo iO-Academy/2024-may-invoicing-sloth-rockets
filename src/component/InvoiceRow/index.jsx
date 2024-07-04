@@ -4,7 +4,6 @@ function InvoiceRow({addDetails, minusDetails, setRowDetails ,id}) {
     const [quantity, setQuantity] = useState(0)
     const [rate, setRate] = useState(Number(0))
     const [desc , setDesc] = useState("Description")
-    const [totals, setTotals] = useState([])
 
     function handleQuantity(e) {
         setQuantity(Number(e.target.value))
@@ -32,7 +31,7 @@ function InvoiceRow({addDetails, minusDetails, setRowDetails ,id}) {
 
     return (
         <>
-            <div className="grid grid-cols-4">
+            <div className="grid grid-cols-4 border-t">
                 <textarea className="border border-gray-300 m-2 p-2" onChange={handleDesc} placeholder='Description'></textarea>
                 <input className="border border-gray-300 m-2 p-2 h-1/3" onChange={handleQuantity} type='number' min='1' max='100' placeholder='Quantity' step='1'></input>
                 <input className="border border-gray-300 m-2 p-2 h-1/3" onChange={handleRate} type='number' min='1' max='100' placeholder='Rate' step='1'></input>

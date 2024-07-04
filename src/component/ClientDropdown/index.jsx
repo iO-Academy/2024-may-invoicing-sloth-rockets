@@ -10,7 +10,7 @@ function ClientDropdown({clients, selectedClient, setSelectedClient, storeClient
     return(
 
         <>
-            <select className="border-2 rounded p-1 text-gray-500"
+            <select className="border-2 rounded p-2 text-gray-500 mt-6"
             onChange={(e) => storeClient(e)}>
                 
                 <option value="">Select from client list</option>

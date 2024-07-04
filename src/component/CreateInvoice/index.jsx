@@ -9,8 +9,8 @@ function CreateInvoice() {
     const [formattedDateCreated, setFormattedDateCreated] = useState("")
     const [formattedDateDue, setFormattedDateDue] = useState("")
 
-    const [selectedClient, setSelectedClient] = useState('')
-    const [clients, setClients] = useState([])
+    const [selectedClient, setSelectedClient] = useState("1")
+    const [clients, setClients] = useState([{id:""}])
 
     const [details, setDetails] = useState([{
         "quantity": 0,
@@ -26,11 +26,11 @@ function CreateInvoice() {
         setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
         
         const dataToSend = {
-            "client": clients[e.target.value].id,
+            "client": selectedClient,
             "total": details.reduce((carry, detail) => carry + detail.total, 0),
             "details": [details]
-        }
-    }, [])
+            }
+        }, [])
 
     useEffect(() => {
         fetch('https://invoicing-api.dev.io-academy.uk/clients')
@@ -63,8 +63,8 @@ function CreateInvoice() {
     }   
 
     function storeClient(e) {
-        setSelectedClient(e.target.value)
-        console.log(clients[e.target.value].id)
+        var clientele = clients.slice()
+        setSelectedClient(clientele[e.target.value].id)
     }
     
     
@@ -72,11 +72,11 @@ function CreateInvoice() {
 
     return (
         <>
-            <Link className="bg-cyan-500 p-3 rounded-sm text-white" to="/CreateInvoice"><i className="bg-black rounded-md px-1 not-italic">+</i> New Invoice</Link>
-            <div className="bg-white">
+            
+            <div className="bg-white px-3 pt-2">
 
-                <div className="grid grid-cols-2 place-content-around p-3">
-                    <div className="pl-3">
+                <div className="grid grid-cols-2 place-content-around">
+                    <div className="">
                         <p className="font-medium pb-2 pt-2">From</p>
                         <p>Kermit the Frog</p>
                         <p>Beverly Hills</p>
@@ -87,24 +87,30 @@ function CreateInvoice() {
                     <div className="text-left justify-self-center">
                         <p className="font-medium pb-2 pt-2">Status</p>
                         <StatusIcon invoiceStatus="Pending" date={formattedDateDue} />
-                        <p className="font-medium pb-2">Created</p>
+                        <p className="font-medium pb-2 pt-3">Created</p>
                         <p>{formattedDateCreated}</p>
-                        <p className="font-medium pb-2 pt-4">Due</p>
-                        <p>{formattedDateDue}</p>
+                        <p className="font-medium pb-1 pt-4">Due</p>
+                        <p className="mb-2">{formattedDateDue}</p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-4 font-bold my-1 border-b border-t border-gray-300  ">
+                <div className="border-gray-300 grid grid-cols-4 font-bold border-b border-t py-2 pl-2">
                     <p>Description</p>
                     <p>Quantity</p>
                     <p>Rate</p>
                     <p>Total</p>
                 </div>
                 {details.map((detail, index) => <InvoiceRow key={index} id={index} addDetails={addDetails} minusDetails={minusDetails} setRowDetails={setRowDetails} />)}
-                <div className="grid grid-cols-4 p-2 pr-4 bg-yellow-400">
+                <div className="grid grid-cols-4 py-2 pr-4 bg-yellow-400">
                     <p className="col-span-3 text-right font-semibold">Total</p>
                     <p className="text-right font-semibold">£{details.reduce((carry, detail) => carry + detail.total, 0)}</p>
                 </div>
+                <div></div>
+            </div>
+                <div className="bg-white pt-10 border-b">
+            </div>
+            <div className="flex">
+                <button>Button</button>
             </div>
         </>
     )
