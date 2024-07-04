@@ -71,8 +71,6 @@ function CreateInvoice() {
                 detailsValid = false
             }
         })
-        console.log(detailsValid, dataToSend.client, dataToSend.total)
-
         if (dataToSend.client && dataToSend.total && detailsValid) {
             setErrorMessage("")
             fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
@@ -95,7 +93,6 @@ function CreateInvoice() {
     return (
         <>
             <div className="bg-white px-3 pt-2">
-
                 <div className="grid grid-cols-2 place-content-around">
                     <div className="">
                         <p className="font-medium pb-2 pt-2">From</p>
@@ -114,8 +111,7 @@ function CreateInvoice() {
                         <p className="mb-2">{formattedDateDue}</p>
                     </div>
                 </div>
-
-                <div className="border-gray-300 grid grid-cols-4 font-bold border-b border-t py-2 pl-2">
+                <div className="border-gray-300 font-bold grid grid-cols-4 border-b border-t py-2 pl-2">
                     <p>Description</p>
                     <p>Quantity</p>
                     <p>Rate</p>
@@ -127,10 +123,10 @@ function CreateInvoice() {
                     <p className="text-right font-semibold">£{details.reduce((carry, detail) => carry + detail.total, 0)}</p>
                 </div>
             </div>
-            <div className="bg-white pt-5 border-b flex justify-end pb-5 pr-5">
-                {<p className="text-red-600 self-center italic font-mono animate-bounce">{errorMessage}</p>}
+            <div className="bg-white pt-5 pb-5 pr-5 border-b flex justify-end">
+                {<p className="text-red-600 italic font-mono self-center animate-bounce">{errorMessage}</p>}
             </div>
-            <div className="bg-white flex justify-end gap-2 pt-4 pb-10 px-3">
+            <div className="bg-white pt-4 pb-10 px-3 flex justify-end gap-2 ">
                 <button onClick={sendInvoice} className="bg-green-600 text-white p-2 rounded">Create invoice</button>
                 <button className="bg-red-500 text-white p-2 rounded">Cancel invoice</button>
             </div>
