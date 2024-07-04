@@ -34,13 +34,19 @@ function CreateInvoice() {
     }, [])
 
     function addDetails() {
-        setDetails(details.push({
+        setDetails(details.concat({
             "quantity": 0,
             "rate": 0,
             "total": 0,
             "description": "Optional text field"
         }))
         console.log(details)
+    }
+
+    function minusDetails() {
+        if (details.length > 1) {
+            setDetails(details.slice(0, -1))  
+        }    
     }
 
     return (
@@ -73,8 +79,7 @@ function CreateInvoice() {
                 <p>Rate</p>
                 <p>Total</p>
             </div>
-            {details.map(detail => <InvoiceRow addDetails={addDetails} />}
-            {console.log(details)}
+            {details.map(detail => <InvoiceRow addDetails={addDetails} minusDetails={minusDetails} />)}
 
         </div>
     )

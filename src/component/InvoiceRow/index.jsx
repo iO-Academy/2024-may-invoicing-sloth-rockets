@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function InvoiceRow({addDetails}) {
+function InvoiceRow({addDetails, minusDetails}) {
     const [quantity, setQuantity] = useState(0)
     const [rate, setRate] = useState(Number(0))
 
@@ -26,7 +26,7 @@ function InvoiceRow({addDetails}) {
                     <button onClick={addDetails} className="p-2 m-1 text-white bg-green-600 rounded">+</button>
 
                     <span></span>
-                    <button className="p-2 m-1 text-white bg-red-500 rounded">-</button>
+                    <button onClick={minusDetails} className="p-2 m-1 text-white bg-red-500 rounded">-</button>
                 </div>
             </div>
         </>
