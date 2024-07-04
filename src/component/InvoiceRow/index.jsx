@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-function InvoiceRow({addDetails, minusDetails}) {
+function InvoiceRow({addDetails, minusDetails, setTotalAdd}) {
     const [quantity, setQuantity] = useState(0)
     const [rate, setRate] = useState(Number(0))
+
+    const [totals, setTotals] = useState([])
 
     function handleQuantity(e) {
         setQuantity(Number(e.target.value))
@@ -13,6 +15,9 @@ function InvoiceRow({addDetails, minusDetails}) {
 
     }
     
+    useEffect(() => {setTotalAdd(parseFloat(parseFloat(quantity*rate).toFixed(2)).toLocaleString())}, [quantity, rate])
+
+
     return (
         <>
             <div className="grid grid-cols-4">

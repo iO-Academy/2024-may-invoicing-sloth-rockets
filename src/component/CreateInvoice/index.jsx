@@ -18,6 +18,8 @@ function CreateInvoice() {
         "description": "Optional text field"
     }])
 
+    const [total, setTotal] = useState(0)
+
     useEffect(() => {
         const dateDue = moment().add(30, 'days')
         const dateCreated = moment()
@@ -42,12 +44,18 @@ function CreateInvoice() {
         }))
         console.log(details)
     }
-
     function minusDetails() {
         if (details.length > 1) {
             setDetails(details.slice(0, -1))  
         }    
+
     }
+
+
+    function setTotalAdd(rowTotal) {
+        setTotal(Number(total+rowTotal))
+    }
+
 
     return (
         <div className="bg-white">
@@ -79,8 +87,11 @@ function CreateInvoice() {
                 <p>Rate</p>
                 <p>Total</p>
             </div>
-            {details.map(detail => <InvoiceRow addDetails={addDetails} minusDetails={minusDetails} />)}
-
+            {details.map(detail => <InvoiceRow key={details.indexOf(detail)} addDetails={addDetails} minusDetails={minusDetails} setTotalAdd={setTotalAdd} />)}
+            <div className="grid grid-cols-4 p-2 pr-4 bg-yellow-400">
+                <p className="col-span-3 text-right font-semibold">Total</p>
+                <p className="text-right font-semibold">£{total}</p>
+            </div>
         </div>
     )
 }
