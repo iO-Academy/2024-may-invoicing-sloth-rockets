@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function InvoiceRow({addDetails, minusDetails}) {
+function InvoiceRow({ addDetails, minusDetails }) {
     const [quantity, setQuantity] = useState(0)
     const [rate, setRate] = useState(Number(0))
 
@@ -12,7 +12,7 @@ function InvoiceRow({addDetails, minusDetails}) {
         setRate(Number(e.target.value))
 
     }
-    
+
     return (
         <>
             <div className="grid grid-cols-4">
@@ -21,7 +21,7 @@ function InvoiceRow({addDetails, minusDetails}) {
                 <input className="border border-gray-300 m-2 p-2 h-1/3" onChange={handleRate} type='number' min='1' max='100' placeholder='Rate' step='1'></input>
 
                 <div className="grid grid-cols-2">
-                    <p>£{parseFloat(parseFloat(quantity*rate).toFixed(2)).toLocaleString()}</p>
+                    <p>£{parseFloat(parseFloat(quantity * rate).toFixed(2)).toLocaleString()}</p>
 
                     <button onClick={addDetails} className="p-2 m-1 text-white bg-green-600 rounded">+</button>
 

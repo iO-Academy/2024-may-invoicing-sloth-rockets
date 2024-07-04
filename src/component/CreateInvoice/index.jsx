@@ -45,8 +45,8 @@ function CreateInvoice() {
 
     function minusDetails() {
         if (details.length > 1) {
-            setDetails(details.slice(0, -1))  
-        }    
+            setDetails(details.slice(0, -1))
+        }
     }
 
     return (

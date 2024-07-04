@@ -68,7 +68,7 @@ function ViewInvoice({ }) {
     }
     function makeGonzo() {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`, {
-            method: "Delete",
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
