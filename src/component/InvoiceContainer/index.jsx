@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Invoice from "../Invoice"
+import { Link } from "react-router-dom"
 
 function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
@@ -14,6 +15,7 @@ function InvoiceContainer() {
 
     return (
         <>
+        <Link className="bg-cyan-500 p-3 rounded-sm text-white " to="/CreateInvoice"><i className="bg-black rounded-md px-1 not-italic">+</i> New Invoice</Link>
             {invoices.map(invoice => <Invoice
                 key={invoice.invoice_id}
                 invoiceTotal={invoice.invoice_total}
