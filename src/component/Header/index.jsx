@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 function Header() {
     const [unpaid, setUnpaid] = useState(0)
@@ -12,10 +13,11 @@ function Header() {
     }, [])
 
     return (
-        <header className="pt-8 ">
-            <h1 className="font-bold text-4xl pb-1">Invoices</h1>
-            <p className="text-gray-500 pb-8 text-lg font-medium">There are {unpaid} unpaid invoices</p>
-        </header>
+            <header className="pt-8 ">
+                    <Link to="/"><h1 className="font-bold text-4xl pb-1">Invoices</h1></Link>
+                <p className="text-gray-500 pb-8 text-lg font-medium">There are {unpaid} unpaid invoices</p>
+                <Link className="bg-cyan-500 p-3 rounded-sm text-white " to="/CreateInvoice"><i className="bg-black rounded-md px-1 not-italic">+</i> New Invoice</Link>
+            </header>
     )
 }
 

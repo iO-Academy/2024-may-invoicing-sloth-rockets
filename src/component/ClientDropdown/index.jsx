@@ -1,19 +1,17 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
 
-function ClientDropdown({clients}) {
-    const [selectedClient, setSelectedClient] = useState('')
-
-    function storeClient(e) {
-        setSelectedClient(e.target.value)
-        console.log(clients[e.target.value])
-    }
+function ClientDropdown({clients, selectedClient, setSelectedClient, storeClient}) {
     
+
+    
+
+
     return(
 
         <>
-            <select className="border-2 rounded p-1 text-gray-500"
-            onChange={storeClient}>
+            <select className="border-2 rounded p-2 text-gray-500 mt-6"
+            onChange={(e) => storeClient(e)}>
                 
                 <option value="">Select from client list</option>
 
