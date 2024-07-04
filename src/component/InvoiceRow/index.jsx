@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 function InvoiceRow({addDetails, minusDetails, setRowDetails ,id}) {
     const [quantity, setQuantity] = useState(0)
     const [rate, setRate] = useState(Number(0))
-    const [desc , setDesc] = useState("Description")
+    const [desc , setDesc] = useState('')
 
     function handleQuantity(e) {
         setQuantity(Number(e.target.value))

@@ -24,13 +24,7 @@ function CreateInvoice() {
         const dateCreated = moment()
         setFormattedDateDue(dateDue.format("DD MMMM YYYY"))
         setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
-        
-        const dataToSend = {
-            "client": selectedClient,
-            "total": details.reduce((carry, detail) => carry + detail.total, 0),
-            "details": [details]
-            }
-        }, [])
+    }, [])
 
     useEffect(() => {
         fetch('https://invoicing-api.dev.io-academy.uk/clients')
@@ -62,12 +56,32 @@ function CreateInvoice() {
         setDetails(newList)
     }   
 
-    function storeClient(e) {
-        var clientele = clients.slice()
-        setSelectedClient(clientele[e.target.value].id)
+    function storeClient(id) {
+        setSelectedClient(id)
     }
     
-    
+    function sendInvoice() {
+        const dataToSend = {
+            "client": selectedClient,
+            "total": details.reduce((carry, detail) => carry + detail.total, 0),
+            "details": details
+        }
+
+        if (dataToSend.client && dataToSend.total && dataToSend.details.description) {
+            fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
+                method: "POST",
+                body: JSON.stringify(dataToSend),
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                }
+              })
+            console.log("sent")
+        } else {
+            console.log('error')
+        }
+
+    }
     
 
     return (
@@ -109,8 +123,9 @@ function CreateInvoice() {
             </div>
                 <div className="bg-white pt-10 border-b">
             </div>
-            <div className="flex">
-                <button>Button</button>
+            <div className="bg-white flex justify-end gap-2 pt-4 pb-10 px-3">
+                <button onClick={sendInvoice} className="bg-green-600 text-white p-2 rounded">Create invoice</button>
+                <button className="bg-red-500 text-white p-2 rounded">Cancel invoice</button>
             </div>
         </>
     )
