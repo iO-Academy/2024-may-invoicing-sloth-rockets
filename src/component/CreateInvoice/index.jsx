@@ -11,7 +11,7 @@ function CreateInvoice() {
     const [formattedDateDue, setFormattedDateDue] = useState("")
 
     const [selectedClient, setSelectedClient] = useState("1")
-    const [clients, setClients] = useState([{ id: "" }])
+    const [clients, setClients] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
     const [details, setDetails] = useState([{
         "quantity": 0,
@@ -50,7 +50,7 @@ function CreateInvoice() {
     }
 
     function setRowDetails(newDetails, id) {
-        var newList = details.slice()
+        let newList = details.slice()
         newList[id] = newDetails
         setDetails(newList)
     }
@@ -124,11 +124,10 @@ function CreateInvoice() {
                 </div>
             </div>
             <div className="bg-white pt-5 pb-5 pr-5 border-b flex justify-end">
-                {<p className="text-red-600 italic font-mono self-center animate-bounce">{errorMessage}</p>}
+                <p className="text-red-600 italic font-mono self-center animate-bounce">{errorMessage}</p>
             </div>
             <div className="bg-white pt-4 pb-10 px-3 flex justify-end gap-2 ">
                 <button onClick={sendInvoice} className="bg-green-600 text-white p-2 rounded">Create invoice</button>
-                <button className="bg-red-500 text-white p-2 rounded">Cancel invoice</button>
             </div>
         </>
     )

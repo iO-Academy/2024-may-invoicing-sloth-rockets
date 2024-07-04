@@ -1,7 +1,7 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
 
-function ClientDropdown({ clients, selectedClient, setSelectedClient, storeClient }) {
+function ClientDropdown({ clients, storeClient }) {
     return (
         <>
             <select className="border-2 rounded p-2 text-gray-500 mt-6"

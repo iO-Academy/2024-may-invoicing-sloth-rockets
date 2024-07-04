@@ -7,19 +7,16 @@ function InvoiceRow({ addDetails, minusDetails, setRowDetails, id }) {
 
     function handleQuantity(e) {
         setQuantity(Number(e.target.value))
-
     }
     function handleRate(e) {
         setRate(Number(e.target.value))
-
     }
     function handleDesc(e) {
         setDesc(e.target.value)
-
     }
 
     useEffect(() => {
-        var newDetails = {
+        let newDetails = {
             "quantity": quantity,
             "rate": rate,
             "total": quantity * rate,

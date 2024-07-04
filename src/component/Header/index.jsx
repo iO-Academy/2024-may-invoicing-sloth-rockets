@@ -19,7 +19,7 @@ function Header() {
                 <p className="text-gray-500 pb-8 text-lg font-medium">There are {unpaid} unpaid invoices</p>
             </div>
             <div className="flex flex-col justify-center">
-                <Link className="bg-cyan-500 px-3 py-2 rounded text-white " to="/CreateInvoice"><i className="bg-black rounded-md px-1 not-italic">+</i> New Invoice</Link>
+                <Link className="bg-cyan-500 px-3 py-2 rounded text-white" to="/CreateInvoice"><i className="bg-black rounded-md px-1 not-italic">+</i> New Invoice</Link>
             </div>
         </header>
     )
