@@ -9,8 +9,9 @@ function CreateInvoice() {
     const [formattedDateCreated, setFormattedDateCreated] = useState("")
     const [formattedDateDue, setFormattedDateDue] = useState("")
 
+    const [selectedClient, setSelectedClient] = useState('')
     const [clients, setClients] = useState([])
-    const [total, setTotal] = useState(0)
+
     const [details, setDetails] = useState([{
         "quantity": 0,
         "rate": 0,
@@ -18,13 +19,17 @@ function CreateInvoice() {
         "description": "Optional text field"
     }])
 
-
     useEffect(() => {
         const dateDue = moment().add(30, 'days')
         const dateCreated = moment()
         setFormattedDateDue(dateDue.format("DD MMMM YYYY"))
         setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
-        const totalList = [] 
+        
+        const dataToSend = {
+            "client": clients[e.target.value].id,
+            "total": details.reduce((carry, detail) => carry + detail.total, 0),
+            "details": [details]
+        }
     }, [])
 
     useEffect(() => {
@@ -42,7 +47,7 @@ function CreateInvoice() {
             "total": 0,
             "description": "Optional text field"
         }))
-        console.log(details)
+        
     }
     function minusDetails() {
         if (details.length > 1) {
@@ -50,13 +55,20 @@ function CreateInvoice() {
         }
 
     }
-
-
+    
     function setRowDetails(newDetails, id){
         var newList = details.slice()
-        setDetails(newList[0]{newDetails})
-    }
+        newList[id] = newDetails
+        setDetails(newList)
+    }   
 
+    function storeClient(e) {
+        setSelectedClient(e.target.value)
+        console.log(clients[e.target.value].id)
+    }
+    
+    
+    
 
     return (
         <>
@@ -70,7 +82,7 @@ function CreateInvoice() {
                         <p>Beverly Hills</p>
                         <p>California</p>
                         <p className="font-medium pb-2 pt-4">To</p>
-                        <Dropdown clients={clients} />
+                        <Dropdown clients={clients} selectedClient={selectedClient} setSelectedClient={setSelectedClient} storeClient={storeClient} />
                     </div>
                     <div className="text-left justify-self-center">
                         <p className="font-medium pb-2 pt-2">Status</p>
@@ -88,10 +100,10 @@ function CreateInvoice() {
                     <p>Rate</p>
                     <p>Total</p>
                 </div>
-                {details.map(detail => <InvoiceRow key={details.indexOf(detail)} id={details.indexOf(detail)} addDetails={addDetails} minusDetails={minusDetails} setRowDetails={setRowDetails} />)}
+                {details.map((detail, index) => <InvoiceRow key={index} id={index} addDetails={addDetails} minusDetails={minusDetails} setRowDetails={setRowDetails} />)}
                 <div className="grid grid-cols-4 p-2 pr-4 bg-yellow-400">
                     <p className="col-span-3 text-right font-semibold">Total</p>
-                    <p className="text-right font-semibold">£{total}</p>
+                    <p className="text-right font-semibold">£{details.reduce((carry, detail) => carry + detail.total, 0)}</p>
                 </div>
             </div>
         </>

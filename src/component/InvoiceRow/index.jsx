@@ -26,9 +26,9 @@ function InvoiceRow({addDetails, minusDetails, setRowDetails ,id}) {
             "total": quantity*rate,
             "description": desc
         }
-        setRowDetails(newDetails)
+        setRowDetails(newDetails, id)
     }, [quantity, rate, desc])
-
+    
 
     return (
         <>
