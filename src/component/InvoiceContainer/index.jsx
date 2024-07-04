@@ -15,7 +15,6 @@ function InvoiceContainer() {
 
     return (
         <>
-        <Link className="bg-cyan-500 p-3 rounded-sm text-white " to="/CreateInvoice"><i className="bg-black rounded-md px-1 not-italic">+</i> New Invoice</Link>
             {invoices.map(invoice => <Invoice
                 key={invoice.invoice_id}
                 invoiceTotal={invoice.invoice_total}
