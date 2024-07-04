@@ -59,12 +59,25 @@ function ViewInvoice({ }) {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            } 
+            }
         })
-        .then(res => res.json())
-        .then(data => {
-            getInvoice()
+            .then(res => res.json())
+            .then(data => {
+                getInvoice()
+            })
+    }
+    function makeGonzo() {
+        fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`, {
+            method: "Delete",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
         })
+            .then(res => res.json())
+            .then(data => {
+                getInvoice()
+            })
     }
 
     return (
@@ -121,15 +134,12 @@ function ViewInvoice({ }) {
                 <p>£{parseFloat((parseFloat(invoiceTotal) - parseFloat(paidToDate)).toFixed(2)).toLocaleString()}</p>
             </div>
             <div className="float-end">
-                <button onClick={makePaid} className="p-2 m-1 text-white rounded md:grid-cols-6"> {statusName === "Paid" ? className="bg-green-500" : className="bg-green-200"} Mark as Paid</button>
-                <button className="p-2 m-1 text-white bg-red-500 rounded float-end md:grid-cols-6">cancel invoice</button>
+                <button onClick={makePaid} className={`p-2 m-1 text-white rounded md:grid-cols-6 ${statusName === "Paid" ? "bg-green-200" : "bg-green-500"}`}>Mark as Paid</button>
+                <button onClick={makeGonzo} className={`p-2 m-1 text-white rounded md:grid-cols-6 ${statusName === "Cancelled" ? "bg-red-200" : "bg-red-600"}`}>gonzo buddy</button>
             </div>
             <p className="border-b pt-4 pb-8">Payments due within 30 days.</p>
-
-
-            
         </>
     )
-} 
+}
 
 export default ViewInvoice
