@@ -134,7 +134,7 @@ function ViewInvoice({ }) {
                 <p>£{parseFloat((parseFloat(invoiceTotal) - parseFloat(paidToDate)).toFixed(2)).toLocaleString()}</p>
             </div>
             <div className="float-end">
-                <button onClick={makePaid} className={`p-2 m-1 text-white rounded md:grid-cols-6 ${statusName === "Paid" ? "bg-green-200" : "bg-green-500"} ${statusName === "Cancelled" && "invisible" }`}  >Mark as Paid</button>
+                <button onClick={makePaid} className={`p-2 m-1 text-white rounded md:grid-cols-6 ${statusName === "Paid" ? "bg-green-200" : "bg-green-500"} ${statusName === "Cancelled" && "invisible"}`}  >Mark as Paid</button>
                 <button onClick={makeGonzo} className={`p-2 m-1 text-white rounded md:grid-cols-6 ${statusName === "Cancelled" ? "bg-red-200" : "bg-red-600"}`}>Gonzo buddy</button>
             </div>
             <p className="border-b pt-4 pb-8">Payments due within 30 days.</p>
