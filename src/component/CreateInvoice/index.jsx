@@ -3,7 +3,7 @@ import Dropdown from "../ClientDropdown"
 import moment from "moment";
 import StatusIcon from "../StatusIcon";
 import InvoiceRow from "../InvoiceRow";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CreateInvoice() {
     const navigate = useNavigate()
@@ -42,13 +42,11 @@ function CreateInvoice() {
             "total": 0,
             "description": "Optional text field"
         }))
-
     }
     function minusDetails() {
         if (details.length > 1) {
             setDetails(details.slice(0, -1))
         }
-
     }
 
     function setRowDetails(newDetails, id) {
@@ -92,13 +90,10 @@ function CreateInvoice() {
         } else {
             setErrorMessage("Error: please fill all fields!")
         }
-
     }
-
 
     return (
         <>
-
             <div className="bg-white px-3 pt-2">
 
                 <div className="grid grid-cols-2 place-content-around">
@@ -127,7 +122,7 @@ function CreateInvoice() {
                     <p>Total</p>
                 </div>
                 {details.map((detail, index) => <InvoiceRow key={index} id={index} addDetails={addDetails} minusDetails={minusDetails} setRowDetails={setRowDetails} />)}
-                <div className="grid grid-cols-4 py-2 pr-4 bg-yellow-400">
+                <div className= "bg-yellow-400 grid grid-cols-4 py-2 pr-4 ">
                     <p className="col-span-3 text-right font-semibold">Total</p>
                     <p className="text-right font-semibold">£{details.reduce((carry, detail) => carry + detail.total, 0)}</p>
                 </div>
