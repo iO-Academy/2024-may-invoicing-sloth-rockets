@@ -52,6 +52,18 @@ function ViewInvoice({ }) {
         setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
     }, [due, created])
 
+    const dataToSend = {}
+
+    function createInvoiceButton({}) {
+        fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
+            method: "POST",
+            body: JSON.stringify(dataToSend),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })}
+
     return (
         <>
             <ViewHeader idName={idName} />
@@ -105,9 +117,13 @@ function ViewInvoice({ }) {
                 <p> </p>
                 <p>£{parseFloat((parseFloat(invoiceTotal) - parseFloat(paidToDate)).toFixed(2)).toLocaleString()}</p>
             </div>
+            <div>
+            <button /*onClick={}*/ className="p-2 m-1 text-white bg-green-600 rounded"> Mark as $$$</button>
+                <p>cancel invioce</p>
+            </div>
             <p className="border-b pt-4 pb-8">Payments due within 30 days.</p>
         </>
     )
-}
+} 
 
 export default ViewInvoice
