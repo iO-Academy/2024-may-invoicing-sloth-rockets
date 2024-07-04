@@ -73,7 +73,7 @@ function CreateInvoice() {
                 <p>Rate</p>
                 <p>Total</p>
             </div>
-            {details.map(detail => <InvoiceRow addDetails={addDetails} />}
+            {details.map(detail => <InvoiceRow addDetails={addDetails} />)}
             {console.log(details)}
 
         </div>
