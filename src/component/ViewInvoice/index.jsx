@@ -24,7 +24,7 @@ function ViewInvoice({ }) {
     const { name, streetAddress, city, created, due, idName, details, paidToDate, invoiceTotal, statusName } = clientInvoice
     const date = moment(due)
 
-    useEffect(() => {
+    function getInvoice() {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`)
             .then(res => res.json())
             .then((invoiceData) => {
@@ -43,7 +43,8 @@ function ViewInvoice({ }) {
                     idName: data.invoice_id
                 })
             })
-    }, [])
+    }
+    useEffect(getInvoice, [])
 
     useEffect(() => {
         const dateDue = moment(due);
@@ -52,20 +53,19 @@ function ViewInvoice({ }) {
         setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
     }, [due, created])
 
-    const [paidStatus, setPaidStatus] = useState({statusName})
-
     function makePaid() {
-        if (paidStatus !== "Paid")
-            setPaidStatus("Paid")
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`, {
             method: "PUT",
-            body: JSON.stringify(paidStatus),
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-     } }).then(res=>res.json())
-             .then (data => {console.log(StatusIcon)})
-    }
+            } 
+        })
+        .then(res => res.json())
+        .then(data => {
+            getInvoice()
+        })
+}
 
     return (
         <>
@@ -120,11 +120,12 @@ function ViewInvoice({ }) {
                 <p> </p>
                 <p>£{parseFloat((parseFloat(invoiceTotal) - parseFloat(paidToDate)).toFixed(2)).toLocaleString()}</p>
             </div>
-            <div>
-                <button onClick={makePaid} className="p-2 m-1 text-white bg-green-600 rounded"> Mark as $$$</button>
-                <p>cancel invoice</p>
+            <div className="float-end">
+                <button onClick={makePaid} className="p-2 m-1 text-white bg-green-600 rounded md:grid-cols-6"> Mark as Paid</button>
+                <button className="p-2 m-1 text-white bg-red-500 rounded float-end md:grid-cols-6">cancel invoice</button>
             </div>
             <p className="border-b pt-4 pb-8">Payments due within 30 days.</p>
+            
         </>
     )
 } 
