@@ -34,7 +34,7 @@ function CreateInvoice() {
             .then((clientsData) => {
                 setClients(clientsData.data)
             })
-            
+
     }, [])
 
     function addDetails() {
@@ -120,7 +120,7 @@ function CreateInvoice() {
                     <p>Total</p>
                 </div>
                 {details.map((detail, index) => <InvoiceRow key={index} id={index} addDetails={addDetails} minusDetails={minusDetails} setRowDetails={setRowDetails} />)}
-                <div className= "bg-yellow-400 grid grid-cols-4 py-2 pr-4 ">
+                <div className="bg-yellow-400 grid grid-cols-4 py-2 pr-4 ">
                     <p className="col-span-3 text-right font-semibold">Total</p>
                     <p className="text-right font-semibold">£{total}</p>
                 </div>
@@ -130,7 +130,7 @@ function CreateInvoice() {
             </div>
             <div className="bg-white pt-4 pb-10 px-3 flex justify-end gap-2 ">
                 <button onClick={sendInvoice} className="bg-green-600 text-white p-2 rounded">Create invoice</button>
-                <button onClick={()=> navigate("/")} className="bg-red-500 text-white p-2 rounded">Cancel invoice</button>
+                <button onClick={() => navigate("/")} className="bg-red-500 text-white p-2 rounded">Cancel invoice</button>
             </div>
         </>
     )

@@ -24,7 +24,7 @@ function ViewInvoice({ }) {
     const { name, streetAddress, city, created, due, idName, details, paidToDate, invoiceTotal, statusName } = clientInvoice
     const date = moment(due)
 
-    useEffect(() => {
+    function getInvoice() {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`)
             .then(res => res.json())
             .then((invoiceData) => {
@@ -43,7 +43,8 @@ function ViewInvoice({ }) {
                     idName: data.invoice_id
                 })
             })
-    }, [])
+    }
+    useEffect(getInvoice, [])
 
     useEffect(() => {
         const dateDue = moment(due);
@@ -51,6 +52,33 @@ function ViewInvoice({ }) {
         setFormattedDateDue(dateDue.format("DD MMMM YYYY"))
         setFormattedDateCreated(dateCreated.format("DD MMMM YYYY"))
     }, [due, created])
+
+    function makePaid() {
+        fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                getInvoice()
+            })
+    }
+    function makeGonzo() {
+        fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                getInvoice()
+            })
+    }
 
     return (
         <>
@@ -104,6 +132,10 @@ function ViewInvoice({ }) {
                 <p className="text-right">Total due</p>
                 <p> </p>
                 <p>£{parseFloat((parseFloat(invoiceTotal) - parseFloat(paidToDate)).toFixed(2)).toLocaleString()}</p>
+            </div>
+            <div className="float-end">
+                <button onClick={makePaid} className={`p-2 m-1 text-white rounded md:grid-cols-6 ${statusName === "Paid" ? "bg-green-200" : "bg-green-500"} ${statusName === "Cancelled" && "invisible"}`}  >Mark as Paid</button>
+                <button onClick={makeGonzo} className={`p-2 m-1 text-white rounded md:grid-cols-6 ${statusName === "Cancelled" ? "bg-red-200" : "bg-red-600"}`}>Gonzo buddy</button>
             </div>
             <p className="border-b pt-4 pb-8">Payments due within 30 days.</p>
         </>

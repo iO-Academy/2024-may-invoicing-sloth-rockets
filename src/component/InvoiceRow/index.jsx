@@ -36,6 +36,7 @@ function InvoiceRow({ addDetails, minusDetails, setRowDetails, id }) {
                 </div>
                 <div className="grid grid-cols-2">
                     <p className="mt-2">£{parseFloat(parseFloat(quantity * rate).toFixed(2)).toLocaleString()}</p>
+
                     <button onClick={addDetails} className="p-2 m-1 text-white bg-green-600 rounded">+</button>
                     <span></span>
                     <button onClick={minusDetails} className={`p-2 m-1 text-white ${id === 0 ? "bg-red-300" : "bg-red-500"} rounded`}>-</button>
