@@ -22,8 +22,8 @@ function InvoiceContainer() {
     }
     return (
         <>
-            <div className="grid grid-cols-2 pb-10 pl-2 lg:inline-block lg:relative lg:-right-[35%]">
-                <div>
+            <div className="grid grid-cols-2 pb-10 pl-2 lg:inline-block lg:relative">
+                <div className="place-self-end">
                     <label htmlFor="sort"></label>
                     <select className="bg-[#F8F9FA] font-semibold text-left" defaultValue="0" name="sort" id="sort" onChange={statusChange} >
                         <option disabled value="">Sort by</option>
@@ -33,8 +33,6 @@ function InvoiceContainer() {
                         <option value="">Show all</option>
                     </select>
                 </div>
-            </div>
-            <div className="grid grid-cols-2 pb-10 pl-2 lg:inline-block lg:relative lg:-right-[35%]">
                 <div>
                     <label htmlFor="sort"></label>
                     <select className="bg-[#F8F9FA] font-semibold text-left" name="Filter" id="sort" onChange={makeFilter} >
