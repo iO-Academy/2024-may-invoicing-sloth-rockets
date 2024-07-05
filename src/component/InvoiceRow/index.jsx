@@ -25,7 +25,6 @@ function InvoiceRow({ addDetails, minusDetails, setRowDetails, id }) {
         setRowDetails(newDetails, id)
     }, [quantity, rate, desc])
 
-
     return (
         <>
             <div className="grid grid-cols-4 border-t">
