@@ -10,9 +10,11 @@ function StatusIcon({ invoiceStatus, date = moment() }) {
     function iconColor() {
         if (invoiceStatus === "Paid") {
             setStatusColor("green-500")
+            setOverDue(false)
         }
         else if (invoiceStatus === "Cancelled") {
             setStatusColor("zinc-500")
+            setOverDue(false)
         }
         else if (moment().isAfter(date)) {
             setOverDue(true)
