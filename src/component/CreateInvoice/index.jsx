@@ -80,7 +80,6 @@ function CreateInvoice() {
                 <p>Total</p>
             </div>
             {details.map(detail => <InvoiceRow addDetails={addDetails} minusDetails={minusDetails} />)}
-
         </div>
     )
 }
