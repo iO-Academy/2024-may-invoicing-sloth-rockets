@@ -22,7 +22,7 @@ function InvoiceContainer() {
     }
     return (
         <>
-            <div className="grid grid-cols-2 pb-10 pl-2 lg:inline-block lg:relative">
+            <div className="flex pb-10 pl-2 lg:relative lg:left-1/2 lg:-top-16">
                 <div className="place-self-end">
                     <label htmlFor="sort"></label>
                     <select className="bg-[#F8F9FA] font-semibold text-left" defaultValue="0" name="sort" id="sort" onChange={statusChange} >
@@ -33,7 +33,7 @@ function InvoiceContainer() {
                         <option value="">Show all</option>
                     </select>
                 </div>
-                <div>
+                <div className="">
                     <label htmlFor="sort"></label>
                     <select className="bg-[#F8F9FA] font-semibold text-left" name="Filter" id="sort" onChange={makeFilter} >
                         <option className="" value="invoice_id">Invoice Id</option>
@@ -42,6 +42,8 @@ function InvoiceContainer() {
                         <option value="due">Date Due</option>
                     </select>
                 </div>
+                <span></span>
+                
             </div>
             {invoices.map(invoice => <Invoice
                 key={invoice.invoice_id}
