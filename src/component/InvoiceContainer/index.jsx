@@ -16,8 +16,8 @@ function InvoiceContainer() {
     function statusChange(e) {
         setSort(parseInt(e.target.value))
     }
-    function makeFilter(e) {
-        setFilter((e.target.value))
+    function filterChange(e) {
+        setFilter(e.target.value)
     }
     return (
         <>
@@ -26,16 +26,17 @@ function InvoiceContainer() {
                     <label htmlFor="sort"></label>
                     <select className="bg-[#F8F9FA] font-semibold text-left" defaultValue="0" name="sort" id="sort" onChange={statusChange} >
                         <option disabled value="">Sort by</option>
-                        <option className="" value="1">Paid</option>
+                        <option value="1">Paid</option>
                         <option value="2">Pending</option>
                         <option value="3">Cancelled</option>
                         <option value="">Show all</option>
                     </select>
                 </div>
-                <div className="">
+
+                <div>
                     <label htmlFor="sort"></label>
-                    <select className="bg-[#F8F9FA] font-semibold text-left" name="Filter" id="sort" onChange={makeFilter} >
-                        <option className="" value="invoice_id">Invoice Id</option>
+                    <select className="bg-[#F8F9FA] font-semibold text-left" name="Filter" id="sort" onChange={filterChange} >
+                        <option value="invoice_id">Invoice Id</option>
                         <option value="invoice_total">Total Amount</option>
                         <option value="created">Date Created</option>
                         <option value="due">Date Due</option>
