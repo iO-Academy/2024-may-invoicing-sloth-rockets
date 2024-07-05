@@ -29,8 +29,11 @@ function InvoiceRow({ addDetails, minusDetails, setRowDetails, id }) {
         <>
             <div className="grid grid-cols-4 border-t">
                 <textarea className="border border-gray-300 m-2 p-2" onChange={handleDesc} placeholder='Description'></textarea>
-                <input className="border border-gray-300 m-2 p-2 h-1/3" onChange={handleQuantity} type='number' min='1' max='100' placeholder='Quantity' step='1'></input>
-                <input className="border border-gray-300 m-2 p-2 h-1/3" onChange={handleRate} type='number' min='1' max='100' placeholder='Rate' step='1'></input>
+                <input className="border border-gray-300 m-2 p-2 h-9" onChange={handleQuantity} type='number' min='1' max='100' placeholder='Quantity' step='1'></input>
+                <div>
+                    <span className="bg-[#EDEFF2] m-2 mr-0 p-2 px-[0.8rem] rounded-l-sm border text-[#5F656C]">£</span>
+                    <input className="border border-gray-300 p-2 m-2 ml-0 h-9 grow " onChange={handleRate} type='number' min='1' max='100' placeholder='Rate' step='1'></input>
+                </div>
                 <div className="grid grid-cols-2">
                     <p>£{parseFloat(parseFloat(quantity * rate).toFixed(2)).toLocaleString()}</p>
                     <button onClick={addDetails} className="p-2 m-1 text-white bg-green-600 rounded">+</button>

@@ -20,6 +20,7 @@ function CreateInvoice() {
         "description": "Optional text field"
     }])
 
+    const total = details.reduce((carry, detail) => carry + detail.total, 0)
     useEffect(() => {
         const dateDue = moment().add(30, 'days')
         const dateCreated = moment()
@@ -33,6 +34,7 @@ function CreateInvoice() {
             .then((clientsData) => {
                 setClients(clientsData.data)
             })
+            
     }, [])
 
     function addDetails() {
@@ -62,7 +64,7 @@ function CreateInvoice() {
     function sendInvoice() {
         const dataToSend = {
             "client": selectedClient,
-            "total": details.reduce((carry, detail) => carry + detail.total, 0),
+            "total": total,
             "details": details
         }
         let detailsValid = true
@@ -120,7 +122,7 @@ function CreateInvoice() {
                 {details.map((detail, index) => <InvoiceRow key={index} id={index} addDetails={addDetails} minusDetails={minusDetails} setRowDetails={setRowDetails} />)}
                 <div className= "bg-yellow-400 grid grid-cols-4 py-2 pr-4 ">
                     <p className="col-span-3 text-right font-semibold">Total</p>
-                    <p className="text-right font-semibold">£{details.reduce((carry, detail) => carry + detail.total, 0)}</p>
+                    <p className="text-right font-semibold">£{total}</p>
                 </div>
             </div>
             <div className="bg-white pt-5 pb-5 pr-5 border-b flex justify-end">
@@ -128,6 +130,7 @@ function CreateInvoice() {
             </div>
             <div className="bg-white pt-4 pb-10 px-3 flex justify-end gap-2 ">
                 <button onClick={sendInvoice} className="bg-green-600 text-white p-2 rounded">Create invoice</button>
+                <button onClick={()=> navigate("/")} className="bg-red-500 text-white p-2 rounded">Cancel invoice</button>
             </div>
         </>
     )
