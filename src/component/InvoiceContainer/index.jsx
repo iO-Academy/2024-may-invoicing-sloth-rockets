@@ -4,21 +4,21 @@ import { Link } from "react-router-dom"
 
 function InvoiceContainer() {
     const [invoices, setInvoices] = useState([])
-    const [sort, setSort] = useState()
-    const [filter, setFilter] = useState()
+    const [sort, setSort] = useState("")
+    const [filter, setFilter] = useState("invoice_id")
     useEffect(() => {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices?status=${sort}&sort=${filter}`)
             .then(res => res.json())
             .then((invoiceData) => {
                 setInvoices(invoiceData.data)
             })
-    }, [sort])
+    }, [sort, filter])
 
     function statusChange(e) {
         setSort(parseInt(e.target.value))
     }
     function makeFilter(e) {
-        setFilter(parseInt(e.target.value))
+        setFilter((e.target.value))
     }
     return (
         <>
@@ -26,7 +26,7 @@ function InvoiceContainer() {
                 <div>
                     <label htmlFor="sort"></label>
                     <select className="bg-[#F8F9FA] font-semibold text-left" defaultValue="0" name="sort" id="sort" onChange={statusChange} >
-                        <option disabled value="0">Sort by</option>
+                        <option disabled value="">Sort by</option>
                         <option className="" value="1">Paid</option>
                         <option value="2">Pending</option>
                         <option value="3">Cancelled</option>
