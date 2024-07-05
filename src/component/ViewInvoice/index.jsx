@@ -64,7 +64,7 @@ function ViewInvoice({ }) {
             .then(res => res.json())
             .then(data => {
                 getInvoice()
-            })       
+            })
     }
     function makeGonzo() {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${id}`, {
