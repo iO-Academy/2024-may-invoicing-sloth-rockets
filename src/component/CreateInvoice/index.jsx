@@ -10,7 +10,7 @@ function CreateInvoice() {
     const [formattedDateCreated, setFormattedDateCreated] = useState("")
     const [formattedDateDue, setFormattedDateDue] = useState("")
 
-    const [selectedClient, setSelectedClient] = useState("1")
+    const [selectedClient, setSelectedClient] = useState("")
     const [clients, setClients] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
     const [details, setDetails] = useState([{

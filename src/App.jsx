@@ -7,18 +7,18 @@ import Footer from "./component/Footer"
 
 function App() {
   return (
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          {/* Homepage*/}
-          <Route path="/" element={<InvoiceContainer />} />
-          {/* ViewInvoice*/}
-          <Route path="/ViewInvoice/:id" element={<ViewInvoice />} />
-          {/* CreateInvoice*/}
-          <Route path="/CreateInvoice" element={<CreateInvoice />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        {/* Homepage*/}
+        <Route path="/" element={<InvoiceContainer />} />
+        {/* ViewInvoice*/}
+        <Route path="/ViewInvoice/:id" element={<ViewInvoice />} />
+        {/* CreateInvoice*/}
+        <Route path="/CreateInvoice" element={<CreateInvoice />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   )
 }
 
